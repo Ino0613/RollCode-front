@@ -71,6 +71,7 @@ export default {
 
   .contents {
     display: flex;
+    margin-top: 5px;
   }
   .views-img1,
   .views-img2,
@@ -85,6 +86,8 @@ export default {
     margin-right: 20px;
     margin-left: 0;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease,
+    transform 0.3s ease;
     img {
       position: relative;
       margin-left: 70px;
@@ -108,6 +111,8 @@ export default {
     height: 50px;
     border-radius: 10px;
     margin-bottom: 18px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease,
+    transform 0.3s ease;
     .first-2,
     .first-3 {
       margin-left: 20px;
@@ -135,6 +140,13 @@ export default {
 
     height: 36px;
     width: 33.7px;
+  }
+  .views-img1:hover,
+  .views-img2:hover,
+  .views-img3:hover,
+  .views-img4:hover,
+  .views-img5:hover{
+    transform: translateY(-5px);
   }
 }
 </style>

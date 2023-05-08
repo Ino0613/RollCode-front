@@ -1,6 +1,8 @@
 <template>
     <div class="latest-interview-questions">
         <div class="interview-questions-header">
+            <img src="@/assets/hots.png" class="view-box-icon" />
+
             <h2 class="title">评论热度榜</h2>
         </div>
 
@@ -137,6 +139,8 @@ export default {
     display: flex;
     margin-bottom: 2px;
     font-size: 11px;
+    margin-top: 5px;
+
 }
 
 .item-list {
@@ -181,7 +185,12 @@ export default {
     }
 
 }
-
+.view-box-icon {
+    height: 30px;
+    width: 30px;
+    margin-right: 5px;
+  }
+  
 .item-link:hover {
     background-color: rgb(230, 230, 230);
 }

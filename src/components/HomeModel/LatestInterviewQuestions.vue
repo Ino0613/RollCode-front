@@ -1,6 +1,8 @@
 <template>
     <div class="latest-interview-questions">
         <div class="interview-questions-header">
+            <img src="@/assets/tools3.png" class="views-box-icon" />
+
             <h2 class="title">最新面试题目</h2>
         </div>
 
@@ -137,6 +139,7 @@ export default {
     display: flex;
     margin-bottom: 2px;
     font-size: 11px;
+    margin-top: 5px;
 }
 
 .item-list {
@@ -145,7 +148,11 @@ export default {
     justify-content: center;
 
 }
-
+.views-box-icon {
+    height: 30px;
+    width: 30px;
+    margin-right: 5px;
+  }
 .ul-item {
     margin-left: 10px;
     padding: 0;

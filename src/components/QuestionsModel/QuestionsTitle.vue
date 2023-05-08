@@ -13,7 +13,7 @@
                     </template>
                     公司真题
                 </el-tab-pane>
-
+<!-- 
                 <el-tab-pane name="third">
                     <template #label>
                         <span>公司真题</span>
@@ -24,7 +24,7 @@
 
                 <el-tab-pane label="专项练习" name="fourth">
                     <span class="small-character">在线编程</span>
-                </el-tab-pane>
+                </el-tab-pane> -->
 
             </el-tabs>
 

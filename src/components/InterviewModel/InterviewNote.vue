@@ -1,7 +1,7 @@
 <template>
   <div class="inter-note">
     <div class="note-header">
-      <img src="@/assets/2.png" class="note-box-icon" />
+      <img src="@/assets/note.png" class="note-box-icon" />
       <h2 class="title">写精贴</h2>
     </div>
     <div class="note-body">
@@ -80,6 +80,7 @@ export default {
 
   .item-left,
   .item-right {
+    cursor: pointer;
     transition: background-color 0.3s ease, box-shadow 0.3s ease,
       transform 0.3s ease;
   }

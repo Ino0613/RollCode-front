@@ -4,14 +4,15 @@ import QuestionsView from '../views/QuestionsView.vue'
 import InterView from '../views/InterView.vue'
 import ExamView from '@/views/ExamView.vue'
 import Recommendations from '../components/HomeModel/Recommendations.vue'
-import LoginorRegister  from '../components/LoginorRegister.vue'
+import LoginorRegister from '../components/LoginorRegister.vue'
+import PostDynamicVue from '@/components/PostModel/PostDynamic.vue'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'home',
     component: HomeView,
     children: [
-      { path: '', component: Recommendations, name: 'recommendations'},
+      { path: '', component: Recommendations, name: 'recommendations' },
       { path: 'home', component: HomeView, name: 'home' },
       { path: 'about', component: InterView, name: 'about' }
     ]
@@ -48,7 +49,12 @@ const routes: Array<RouteRecordRaw> = [
     path: '/exam/:type',
     name: 'exam',
     component: ExamView
-}
+  },
+  {
+    path: '/post/add',
+    name: 'postAdd',
+    component: PostDynamicVue
+  },
 ]
 
 const router = createRouter({

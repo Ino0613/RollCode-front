@@ -2,7 +2,7 @@
     <div class="job-toolbox">
         
         <div class="tool-header">
-            <img src="@/assets/1.png" class="tool-box-icon" />
+            <img src="@/assets/tools1.png" class="tool-box-icon" />
             <h2 class="title">求职工具箱</h2>
         </div>
         <div class="tool-body">
@@ -28,19 +28,19 @@ export default {
             experiences: [
                 {
                     label: '面试经验',
-                    icon: 'https://static.nowcoder.com/fe/file/oss/1670224506225AUBYN.png',
+                    icon: "https://tc.iyunmc.cn/LightPicture/2023/05/a70d396c3d696db1.png",
                     links: [
                         {
                             href: 'https://www.nowcoder.com/interview/center?anchor=companyExp&jumpFrom=%E6%9C%AA%E7%99%BB%E5%BD%95%E9%A6%96%E9%A1%B5',
                             target: '_blank',
-                            title: '职位面经',
-                            text: '职位面经'
+                            title: '公司面经',
+                            text: '公司面经'
                         },
                         {
                             href: 'https://www.nowcoder.com/interview/center?anchor=companyExp&checked=company&jumpFrom=%E6%9C%AA%E7%99%BB%E5%BD%95%E9%A6%96%E9%A1%B5',
                             target: '_blank',
-                            title: '公司面经',
-                            text: '公司面经'
+                            title: '职位面经',
+                            text: '职位面经'
                         },
                         {
                             href: 'https://www.nowcoder.com/interview/ai/index?jumpFrom=%E6%9C%AA%E7%99%BB%E5%BD%95%E9%A6%96%E9%A1%B5',
@@ -52,19 +52,19 @@ export default {
                 },
                 {
                     label: '求职题库',
-                    icon: 'https://static.nowcoder.com/fe/file/oss/1670224563743RVJCA.png',
+                    icon: 'https://tc.iyunmc.cn/LightPicture/2023/05/caec2729efb59b24.png',
                     links: [
                         {
                             href: 'https://www.nowcoder.com/exam/company?jumpFrom=%E6%9C%AA%E7%99%BB%E5%BD%95%E9%A6%96%E9%A1%B5',
                             target: '_blank',
-                            title: '公司真题',
-                            text: '公司真题'
+                            title: '专项练习',
+                            text: '专项练习'
                         },
                         {
                             href: 'https://www.nowcoder.com/exam/intelligent?jumpFrom=%E6%9C%AA%E7%99%BB%E5%BD%95%E9%A6%96%E9%A1%B5',
                             target: '_blank',
-                            title: '专项练习',
-                            text: '专项练习'
+                            title: '面试真题',
+                            text: '面试真题'
                         },
                         {
                             href: 'https://www.nowcoder.com/exam/oj?jumpFrom=%E6%9C%AA%E7%99%BB%E5%BD%95%E9%A6%96%E9%A1%B5',
@@ -75,8 +75,8 @@ export default {
                     ]
                 },
                 {
-                    label: '职位投递',
-                    icon: 'https://static.nowcoder.com/fe/file/oss/1670224616504KXRDZ.png',
+                    label: '投递简历',
+                    icon: 'https://tc.iyunmc.cn/LightPicture/2023/05/10251e727c2a0a5e.png',
                     links: [
                         {
                             href: 'https://www.nowcoder.com/exam/company?jumpFrom=%E6%9C%AA%E7%99%BB%E5%BD%95%E9%A6%96%E9%A1%B5',
@@ -100,7 +100,7 @@ export default {
                 },
                 {
                     label: '求职助手',
-                    icon: 'https://static.nowcoder.com/fe/file/oss/1670224616504KXRDZ.png',
+                    icon: 'https://tc.iyunmc.cn/LightPicture/2023/05/5f2e798fbf591283.png',
                     links: [
                         {
                             href: 'https://www.nowcoder.com/exam/company?jumpFrom=%E6%9C%AA%E7%99%BB%E5%BD%95%E9%A6%96%E9%A1%B5',
@@ -111,8 +111,8 @@ export default {
                         {
                             href: 'https://www.nowcoder.com/exam/intelligent?jumpFrom=%E6%9C%AA%E7%99%BB%E5%BD%95%E9%A6%96%E9%A1%B5',
                             target: '_blank',
-                            title: '简历互评',
-                            text: '简历互评'
+                            title: '补贴查询',
+                            text: '补贴查询'
                         },
 
                     ]

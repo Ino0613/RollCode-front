@@ -75,6 +75,7 @@ export default {
 
 <style lang="less" scoped>
 .questions {
+  
   .my-container {
     height: auto;
     background-color: #f7f8f8;
@@ -91,8 +92,7 @@ export default {
     margin-left: 130px;
   }
 
-  .col-left {
-  }
+
 
   .col-right {
     margin-top: 50px;

@@ -92,62 +92,7 @@ export default defineComponent({
                     { title: 'ZooKeeper', status: { done: 0, total: 47 } },
                 ],
             },
-            {
-                title: '编程语言',
-                subItems: [
-                    { title: 'Go', status: { done: 0, total: 60 } },
-                    { title: 'C++', status: { done: 0, total: 100 } },
-                    { title: 'Java', status: { done: 0, total: 257 } },
-                    { title: 'JavaScript', status: { done: 0, total: 307 } },
-                    { title: 'Python', status: { done: 0, total: 221 } },
-                    { title: 'HTML', status: { done: 0, total: 252 } },
-                    { title: 'CSS', status: { done: 0, total: 190 } },
-                    { title: 'C语言', status: { done: 0, total: 224 } },
-                ],
-            },
-            {
-                title: '安全',
-                subItems: [
-                    { title: '加密和安全', status: { done: 0, total: 63 } },
-                ],
-            },
-            {
-                title: '中间件',
-                subItems: [
-                    { title: 'Redis', status: { done: 0, total: 63 } },
-                    { title: 'Kafka', status: { done: 0, total: 56} },
-                    { title: 'Hive', status: { done: 0, total: 54 } },
-                    { title: 'ZooKeeper', status: { done: 0, total: 47 } },
-                ],
-            },
-            {
-                title: '编程语言',
-                subItems: [
-                    { title: 'Go', status: { done: 0, total: 60 } },
-                    { title: 'C++', status: { done: 0, total: 100 } },
-                    { title: 'Java', status: { done: 0, total: 257 } },
-                    { title: 'JavaScript', status: { done: 0, total: 307 } },
-                    { title: 'Python', status: { done: 0, total: 221 } },
-                    { title: 'HTML', status: { done: 0, total: 252 } },
-                    { title: 'CSS', status: { done: 0, total: 190 } },
-                    { title: 'C语言', status: { done: 0, total: 224 } },
-                ],
-            },
-            {
-                title: '安全',
-                subItems: [
-                    { title: '加密和安全', status: { done: 0, total: 63 } },
-                ],
-            },
-            {
-                title: '中间件',
-                subItems: [
-                    { title: 'Redis', status: { done: 0, total: 63 } },
-                    { title: 'Kafka', status: { done: 0, total: 56} },
-                    { title: 'Hive', status: { done: 0, total: 54 } },
-                    { title: 'ZooKeeper', status: { done: 0, total: 47 } },
-                ],
-            },
+
 
         ];
         return {
