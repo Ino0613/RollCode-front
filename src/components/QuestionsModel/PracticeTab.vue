@@ -336,7 +336,7 @@ li:first-child{
     /* 题目列表的样式 */
 }
 
-/deep/.el-tabs__nav-scroll {
+::v-deep.el-tabs__nav-scroll {
     background-color: transparent !important;
     height: 60px;
     border-radius: 10px;

@@ -32,7 +32,7 @@
   height: auto;
   background-color: #f7f8f8;
 }
-/deep/.el-header {
+::v-deep.el-header {
   .navbar {
     position: absolute;
     top: 0;

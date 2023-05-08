@@ -400,7 +400,7 @@ function sendCodeText() {
   border-bottom: 2px solid #32ca99 !important;
 }
 
-.el-menu-item.is-active>.router-link-exact-active/deep/ {
+.el-menu-item.is-active>.router-link-exact-active::v-deep {
   color: #32ca99 !important;
 }
 
@@ -459,17 +459,17 @@ function sendCodeText() {
   border-bottom: none !important;
 }
 
-.el-input__wrapper {
+::v-deep.el-input__wrapper {
   border-radius: 10px !important;
   height: 38px;
 
 }
 
-.el-input__inner:focus {
+::v-deep.el-input__inner:focus {
   border-color: #47e2b1 !important;
 }
 
-.code-input {
+::v-deep .code-input {
   width: 200px;
 }
 
@@ -478,30 +478,30 @@ function sendCodeText() {
 
 }
 
-.el-dialog {
+::v-deep .el-dialog {
   border-radius: 40px !important;
   width: 350px !important;
   height: 440px;
 }
 
-.el-form-item__content {
+::v-deep .el-form-item__content {
   display: flex !important;
   flex-wrap: nowrap !important;
   align-items: center !important;
   justify-content: center;
 }
 
-.el-tabs__nav-wrap::after {
+::v-deep .el-tabs__nav-wrap::after {
   background-color: transparent !important;
 }
 
-.el-form-item__content a {
+::v-deep.el-form-item__content a {
   color: #46d2a6;
   cursor: pointer;
   text-decoration: none !important;
 }
 
-.menu-item-warpper {
+::v-deep.menu-item-warpper {
   display: flex;
   align-items: center;
   height: 58px;

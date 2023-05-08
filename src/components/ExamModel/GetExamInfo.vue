@@ -160,10 +160,10 @@ export default {
 }
 
 /* 选中的标签 */
-/deep/.el-radio__input.is-checked + .el-radio__label {
+::v-deep.el-radio__input.is-checked + .el-radio__label {
   color: #32ca99;
 }
-/deep/.el-radio__input.is-checked .el-radio__inner {
+::v-deep.el-radio__input.is-checked .el-radio__inner {
   border-color: #32ca99;
   background: #32ca99;
 }
