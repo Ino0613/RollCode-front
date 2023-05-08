@@ -51,7 +51,7 @@ const routes: Array<RouteRecordRaw> = [
     component: ExamView
   },
   {
-    path: '/post/add',
+    path: '/postadd',
     name: 'postAdd',
     component: PostDynamicVue
   },

@@ -6,7 +6,7 @@
     </div>
     <div class="note-body">
       <div class="item-module">
-        <div class="item-left">
+        <div class="item-left" @click="handlelinkTo">
           <div>
             <img src="@/assets/interview-3.png" alt="发动态" />
           </div>
@@ -24,8 +24,16 @@
 </template>
 
 <script lang="ts">
+import { ComponentOptions } from "vue";
 export default {
   name: "JobnoteTest",
+  methods: {
+    handlelinkTo() {
+      // 点击确定按钮后执行的操作
+
+      this.$router.push("/postadd"); // 返回到某路由
+    },
+  },
   data() {
     return {
       note: [
@@ -38,7 +46,12 @@ export default {
       ],
     };
   },
-};
+} as ComponentOptions<{
+  startTime: number;
+  elapsedTime: number;
+  formattedTime(): string;
+  submitExam(): void;
+}>;
 </script>
 
 <style lang="less" scoped>

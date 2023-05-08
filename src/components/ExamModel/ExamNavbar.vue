@@ -97,9 +97,9 @@ export default {
   text-align: right;
 
 }
-::v-deep.el-dialog{
+/deep/.el-dialog{
   width: 500px!important;
-  border-radius: 10px;
+  border-radius: 30px;
   align-items: center;
   margin-top: 240px;
   .dialog-footer{

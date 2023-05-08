@@ -4,7 +4,7 @@
         <el-row justify="center" type="flex">
           <!-- 左侧标题 -->
           <el-col :span="4">
-            <el-page-header  title="返回页面" @click="confirmDialogVisible=true">
+            <el-page-header  title="返回页面" @click="handleConfirmDialogConfirm">
             </el-page-header>
           </el-col>
           <!-- 中间占位符 -->
@@ -50,8 +50,8 @@
   
       handleConfirmDialogConfirm() {
         // 点击确定按钮后执行的操作
-        this.confirmDialogVisible = false; // 隐藏确认框
-        this.$router.push('/questions'); // 返回到某路由
+
+        this.$router.push('/interview'); // 返回到某路由
       },
       handleConfirmDialogClose(done: () => void) {
         // 关闭确认框前的操作

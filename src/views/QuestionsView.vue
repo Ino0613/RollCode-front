@@ -23,7 +23,7 @@
               </div>
             </el-main>
           </el-col>
-          <el-col :span="6" class="col-right" :gutter="10">
+          <el-col :span="5" class="col-right" :gutter="10">
             <el-affix target=".my-container" :offset="80">
               <ICalendar />
               <Features />
@@ -75,7 +75,6 @@ export default {
 
 <style lang="less" scoped>
 .questions {
-  
   .my-container {
     height: auto;
     background-color: #f7f8f8;

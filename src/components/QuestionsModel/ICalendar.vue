@@ -12,7 +12,8 @@
 <style lang="less">
 .i-calendar {
   .el-calendar {
-    width: 300px;
+    width: 260px;
+    height: 280px;
     --el-calendar-border: transparent;
     border-radius: 20px;
     --el-calendar-cell-width: 35px !important;

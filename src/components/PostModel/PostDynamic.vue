@@ -27,12 +27,18 @@
         <div class="form-tools">
             <div></div>
         </div>
+        <div >
         <button class="submit-button" @click="submitPost">提交</button>
+
+        </div>
       </div>
+    <PostFooter/>
+      
     </div>
   </template>
   <script lang="ts">
 import PostNavbar from './PostNavbar.vue';
+import PostFooter from './PostFooter.vue'
 import { ref } from 'vue'
 const text = ref('')
 const textarea = ref('')
@@ -47,7 +53,7 @@ export default {
         };
     },
     methods: {
-        handleImageUpload(event) {
+        handleImageUpload(event: any) {
             this.image = event.target.files[0];
         },
         submitPost() {
@@ -61,7 +67,7 @@ export default {
             });
         },
     },
-    components: { PostNavbar }
+    components: { PostNavbar,PostFooter }
 };
 </script>
 
@@ -83,7 +89,7 @@ export default {
   
   .post-body{
     width: 800px;
-    height: auto;
+    height: 450px;
     background-color: rgb(255, 255, 255);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -140,12 +146,15 @@ export default {
   .form-group .file-upload:hover {
     background-color: #3e8e41;
   }
-  
+  /deep/.el-textarea__inner{
+    height: 280px!important;
+  }
   .submit-button {
     display: block;
     margin: 0 auto;
     background-color: #4CAF50;
     color: #fff;
+    margin-top: 250px;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
