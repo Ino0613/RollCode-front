@@ -23,43 +23,44 @@ import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { ElForm, ElFormItem, ElInput, ElButton, ElMessage } from "element-plus";
 
-
 const dialogLoginRegisterVisible = ref(false);
-const store = useStore();
-  export default {
-    computed: {
-      user() {
-        return store.state.user;
-      },
-      userToken() {
-        return store.state.token;
-      }
+
+export default {
+  computed: {
+    user() {
+      const store = useStore();
+      return store.state.user;
     },
-    methods: {
- handleLogout() {
-  axios
-    .post("http://localhost:8080/user/logout", {})
-    .then((response: any) => {
-      console.log(response.data.msg);
-      if (response.data.code == 0) {
-        ElMessage.error(response.data.data);
-      }
-      if (response.data.code == 20000) {
-        dialogLoginRegisterVisible.value = false;
-        localStorage.removeItem("token");
-        window.location.reload(); // 刷新当前页面
-        // router.push({ path: '/' }); // 使用Vue Router的push方法跳转到home页面
-        ElMessage.success(response.data.data);
-      }
-      // 处理请求成功的逻辑
-    })
-    .catch((error: any) => {
-      // 处理请求失败的逻辑
-      console.log(error);
-    });
-}
-    }
-  };
+    userToken() {
+      const store = useStore();
+      return store.state.token;
+    },
+  },
+  methods: {
+    handleLogout() {
+      axios
+        .post("api/user/logout", {})
+        .then((response: any) => {
+          console.log(response.data.msg);
+          if (response.data.code == 0) {
+            ElMessage.error(response.data.data);
+          }
+          if (response.data.code == 20000) {
+            dialogLoginRegisterVisible.value = false;
+            localStorage.removeItem("token");
+            window.location.reload(); // 刷新当前页面
+            // router.push({ path: '/' }); // 使用Vue Router的push方法跳转到home页面
+            ElMessage.success(response.data.data);
+          }
+          // 处理请求成功的逻辑
+        })
+        .catch((error: any) => {
+          // 处理请求失败的逻辑
+          console.log(error);
+        });
+    },
+  },
+};
 </script>
 
 <style scoped>

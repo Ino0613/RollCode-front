@@ -16,7 +16,6 @@
             >
               <el-radio :label="option">{{ option }}</el-radio>
             </div>
-            
           </el-radio-group>
         </div>
       </div>
@@ -76,15 +75,13 @@ export default {
           difficulty: 2,
         },
       ],
-   
     };
-    
   },
   questions: [] as Question[],
   mounted() {
     window.scrollTo(0, 0);
     axios
-      .get("http://localhost:8080/question/exam/1")
+      .get("api/question/exam/1")
       .then((response) => {
         this.questions = response.data.data.map((record: any) => {
           return {
@@ -96,7 +93,6 @@ export default {
             selectedAnswer: null,
             score: record.score,
             difficulty: record.difficulty,
-            
           };
         });
       })
@@ -145,27 +141,37 @@ export default {
           border-radius: 5px;
         }
         .option:checked {
-          background-color: aqua!important;
+          background-color: aqua !important;
         }
       }
     }
   }
 }
-.el-radio-group{
-    align-items: normal;
+.el-radio-group {
+  align-items: normal;
   display: inline-block;
   width: 100%;
   height: 100%;
- 
 }
 
 /* 选中的标签 */
-::v-deep.el-radio__input.is-checked + .el-radio__label {
+:deep(.el-radio__input.is-checked + .el-radio__label) {
   color: #32ca99;
 }
-::v-deep.el-radio__input.is-checked .el-radio__inner {
+:deep(.el-radio__input.is-checked .el-radio__inner) {
   border-color: #32ca99;
   background: #32ca99;
 }
 
+.el-button {
+  background: #32ca99;
+  border-color: #32ca99;
+  padding: 20px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  &:hover {
+    background-color: #2db78b;
+    border-color: #2db78b;
+  }
+}
 </style>

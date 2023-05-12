@@ -38,7 +38,6 @@
 import IBanner from "@/components/HomeModel/IBanner.vue";
 import JobAbilitiesTest from "@/components/HomeModel/JobAbilitiesTest.vue";
 import PopularQuestions from "@/components/PopularQuestions.vue";
-import Recommendations from "@/components/HomeModel/Recommendations.vue";
 import Features from "@/components/HomeModel/Features.vue";
 import LatestInterviewQuestions from "@/components/HomeModel/LatestInterviewQuestions.vue"
 import HomeTitle from "@/components/HomeModel/HomeTitle.vue";
@@ -48,7 +47,7 @@ export default {
     IBanner,
     PopularQuestions,
     JobAbilitiesTest,
-    Recommendations,
+
     LatestInterviewQuestions,
     Features,
     HomeTitle,

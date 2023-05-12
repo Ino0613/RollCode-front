@@ -5,8 +5,7 @@
       <el-row justify="center">
         <el-col :span="2">
           <!-- Logo -->
-          <img src="@/assets/logo.png" target="_blank" class="logo-img" />
-          <!-- <el-image src="../assets/logo.png" fit="contain"></el-image> -->
+          <img src="@/assets/logo.png" class="logo-img" />
         </el-col>
         <el-col :span="7">
           <!-- 导航栏 -->
@@ -56,36 +55,23 @@
                 "
               />
               <span style="color: #dfdfdf" class="no-hover">|</span>
-              <!--                  <button type="button" style="background-color: transparent; border: none;">按钮</button>-->
               <el-button
                 class="search-btn"
                 type="success"
                 :style="{ fontSize: '20px' }"
                 text
               >
-                <el-icon size="20px">
-                  <Search></Search> </el-icon
-                >&nbsp; <span style="font-size: 16px">搜索</span></el-button
+                <el-icon size="20px"> <Search></Search> </el-icon>&nbsp;
+                <span style="font-size: 16px">搜索</span></el-button
               >
             </div>
-            <!--            <el-input class="search-input" placeholder="搜索题目或面试相关信息" suffix-icon="el-icon-search"></el-input>-->
           </div>
         </el-col>
-        <el-col :span="3">
-          <!-- 登录按钮 -->
-          <!--          <div class="menu-item-warpper left">-->
-          <!--            <el-button class="search-btn" round type="success" size="large">搜索</el-button>-->
-          <!--          </div>-->
-        </el-col>
+        <el-col :span="3"> </el-col>
         <el-col :span="2">
           <div class="menu-item-warpper">
-            <!-- <el-button class="login-btn" round type="success" size="large"
-              @click="dialogLoginRegisterVisible = true">登录/注册</el-button> -->
             <template v-if="userToken">
-              <UserAvatar/>
-
-              <!-- <el-button class="login-btn" round type="success" size="large"
-                @click="dialogLoginRegisterVisible = true">登陆成功 {{ token }}</el-button> -->
+              <UserAvatar />
             </template>
             <template v-else>
               <el-button
@@ -124,10 +110,10 @@
               >
                 <el-tabs v-model="activeTab">
                   <el-tab-pane label="注册/登录" name="register">
-                    <el-form-item label="手机号码" prop="phone">
+                    <el-form-item label="手机号码" prop="account">
                       <el-input
-                        v-model="loginForm.phone"
-                        placeholder="请输入手机号码"
+                        v-model="loginForm.account"
+                        placeholder="请输入手机号码/邮箱"
                       />
                     </el-form-item>
                     <el-form-item label="验证码" prop="code">
@@ -153,93 +139,8 @@
                         }}</el-button
                       >
                     </el-form-item>
-                    <div class="login-icons">
-                      <a class="qq-login" href="/#">
-                        <span
-                          tagname="span"
-                          class="ncicon ncicon-bleed"
-                          aria-label="QQ"
-                          size="24"
-                          ><svg
-                            class="qq-login-svg"
-                            focusable="false"
-                            viewBox="0 0 1024 1024"
-                            fill="currentColor"
-                            width="1.8em"
-                            height="1.8em"
-                            aria-hidden="true"
-                          >
-                            <g fill-rule="nonzero" fill="none">
-                              <path
-                                d="M529.083 973.034c-79.293 0-152.082-26.541-198.943-66.178-23.8 7.112-54.245 18.55-73.454 32.74-16.449 12.136-14.392 24.51-11.431 29.502 13.007 21.954 223.16 14.019 283.828 7.187v-3.251zm0 0c79.304 0 152.086-26.541 198.956-66.178 23.788 7.112 54.237 18.55 73.452 32.74 16.436 12.136 14.388 24.51 11.42 29.502-13.007 21.954-223.155 14.019-283.828 7.187v-3.251z"
-                                fill="#F6C556"
-                              ></path>
-                              <path
-                                d="M529.532 497.784c130.95-.886 235.898-26.237 271.46-35.954C809.47 459.508 814 455.35 814 455.35c.033-1.196.538-21.321.538-31.697 0-174.832-82.525-350.505-285.486-350.511-202.96.006-285.49 175.686-285.49 350.504 0 10.39.504 30.508.543 31.698 0 0 3.69 3.89 10.439 5.776 32.835 9.136 139.757 35.746 274.022 36.663h.967zm355.845 145.64c-8.117-26.123-19.195-56.584-30.419-85.839 0 0-6.452-.798-9.723.145-100.677 29.248-222.714 47.893-315.703 46.766h-.967c-92.471 1.108-213.677-17.316-314.02-46.28-3.833-1.106-11.4-.631-11.4-.631-11.224 29.255-22.302 59.723-30.419 85.839-38.713 124.574-26.167 176.124-16.62 177.275 20.492 2.48 79.755-93.768 79.755-93.768 0 97.803 88.301 247.973 290.509 249.354h5.364c202.2-1.38 290.502-151.55 290.502-249.354 0 0 59.27 96.247 79.761 93.774 9.542-1.157 22.087-52.713-16.62-177.281z"
-                                fill="#0E0E0D"
-                              ></path>
-                              <path
-                                d="M456.837 331.42c-27.534 1.247-51.058-30.114-52.538-69.992-1.491-39.889 19.6-73.237 47.134-74.483 27.503-1.234 51.018 30.115 52.512 70.005 1.506 39.895-19.594 73.244-47.108 74.47zm196.968-69.992c-1.474 39.871-24.996 71.239-52.53 69.993-27.522-1.234-48.614-34.576-47.107-74.464 1.49-39.891 25.002-71.24 52.51-70.012 27.533 1.246 48.627 34.594 47.127 74.483z"
-                                fill="#FFF"
-                              ></path>
-                              <path
-                                d="M702.727 387.739c-7.352-16.291-81.456-34.45-173.186-34.45h-.989c-91.737 0-165.834 18.159-173.193 34.456a5.479 5.479 0 0 0-.537 2.321 5.577 5.577 0 0 0 1.012 3.139c6.2 9.028 88.479 53.693 172.718 53.693h.989c84.232 0 166.51-44.652 172.711-53.693a5.547 5.547 0 0 0 1.013-3.152 5.421 5.421 0 0 0-.538-2.308"
-                                fill="#F6C556"
-                              ></path>
-                              <path
-                                d="M490.678 262.022c1.259 15.753-7.383 29.749-19.272 31.273-11.912 1.532-22.574-9.997-23.838-25.75-1.246-15.766 7.383-29.76 19.252-31.28 11.932-1.542 22.611 9.997 23.858 25.75v.007zm75.643 5.265c2.434-4.361 19.004-27.282 53.313-18.937 9.017 2.195 13.185 5.423 14.065 6.688 1.296 1.873 1.658 4.541.336 8.135-2.607 7.125-7.991 6.93-10.972 5.536-1.929-.898-25.825-16.829-47.843 6.94-1.517 1.628-4.224 2.19-6.788.254-2.575-1.949-3.63-5.883-2.111-8.616z"
-                                fill="#333"
-                              ></path>
-                              <path
-                                d="M529.517 598.765h-.97c-63.24.759-139.92-7.616-214.182-22.258-6.353 36.81-10.187 83.082-6.897 138.258 8.326 139.46 91.15 227.129 218.993 228.394h5.189c127.849-1.265 210.664-88.934 219.002-228.394 3.29-55.187-.55-101.447-6.907-138.264-74.27 14.648-150.968 23.03-214.222 22.258"
-                                fill="#FFF"
-                              ></path>
-                              <path
-                                d="M813.995 455.351l40.96 102.225c-102.462 30.887-229.42 50.791-325.427 49.634h-.97c-16.906.203-34.772-.246-53.296-1.293l-.002 122.316c-62.99 8.781-125.857-3.897-125.857-3.897v-132.97c-50.35-8.503-100.729-20.062-146.263-33.79l40.96-102.225c.416.126 122.554 38.612 284.459 39.7h.969c162.171-1.095 284.467-39.7 284.467-39.7z"
-                                fill="#E14847"
-                              ></path>
-                            </g></svg
-                        ></span>
-                      </a>
-
-                      <a class="github-login" href="#">
-                        <span
-                          tagname="span"
-                          class="ncicon ncicon-bleed"
-                          aria-label="GitHub"
-                          size="24"
-                          ><svg
-                            class="github-login-svg"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                            width="1.8em"
-                            height="1.8em"
-                            aria-hidden="true"
-                            href="https://github.com/login"
-                          >
-                            <path
-                              fill-rule="evenodd"
-                              d="M12.048 2a9.913 9.913 0 00-6.511 2.44 10.308 10.308 0 00-3.407 6.171 10.436 10.436 0 001.323 6.954 10.079 10.079 0 005.422 4.418c.505.095.684-.226.684-.497v-1.744c-2.804.624-3.396-1.378-3.396-1.378a2.738 2.738 0 00-1.115-1.504c-.906-.63.074-.63.074-.63.317.046.62.165.886.348.266.184.488.426.648.71.137.252.32.475.541.655a2.128 2.128 0 001.582.463c.28-.033.551-.122.798-.262a2.198 2.198 0 01.616-1.372c-2.23-.258-4.572-1.14-4.572-5.035a4.013 4.013 0 011.03-2.75 3.813 3.813 0 01.098-2.713s.844-.277 2.76 1.05a9.303 9.303 0 015.028 0c1.917-1.327 2.755-1.05 2.755-1.05.37.85.413 1.811.123 2.693a4.014 4.014 0 011.029 2.75c0 3.94-2.348 4.803-4.584 5.036.24.246.425.542.543.868.118.326.166.674.14 1.02v2.814c0 .333.18.591.69.49a10.085 10.085 0 005.346-4.434 10.437 10.437 0 001.29-6.91 10.31 10.31 0 00-3.373-6.132A9.916 9.916 0 0012.048 2z"
-                              clip-rule="evenodd"
-                            ></path></svg
-                        ></span>
-                      </a>
-                    </div>
-                    <el-form-item>
-                      <el-checkbox
-                        class-name="agreement"
-                        ref="buttonRef"
-                        v-model="loginForm.agreed"
-                      />
-                      同意<a href="#">《用户协议》</a>和<a href="#"
-                        >《隐私政策》</a
-                      >
-                      <!-- <el-popover class="agreement-tip" :virtual-ref="buttonRef" ref="popoverRef" v-model:show="showAgreementTip"
-                        placement="top-start" content="请阅读并勾选下方协议">
-                      </el-popover> -->
-                    </el-form-item>
                   </el-tab-pane>
+
                   <el-tab-pane label="密码登录">
                     <el-form-item label="邮箱/手机号码" prop="account">
                       <el-input
@@ -255,11 +156,100 @@
                       ></el-input>
                     </el-form-item>
                     <el-form-item class="form-footer">
-                      <el-button type="primary" @click="handleSubmitLogin"
+                      <el-button
+                        type="primary"
+                        class="register-btn"
+                        @click="handleSubmitLogin"
                         >登录</el-button
                       >
                     </el-form-item>
                   </el-tab-pane>
+                  <div class="login-icons">
+                    <a class="qq-login" @click="qqLoginClick">
+                      <span
+                        tagname="span"
+                        class="ncicon ncicon-bleed"
+                        aria-label="QQ"
+                        size="24"
+                        ><svg
+                          class="qq-login-svg"
+                          focusable="false"
+                          viewBox="0 0 1024 1024"
+                          fill="currentColor"
+                          width="1.8em"
+                          height="1.8em"
+                          aria-hidden="true"
+                        >
+                          <g fill-rule="nonzero" fill="none">
+                            <path
+                              d="M529.083 973.034c-79.293 0-152.082-26.541-198.943-66.178-23.8 7.112-54.245 18.55-73.454 32.74-16.449 12.136-14.392 24.51-11.431 29.502 13.007 21.954 223.16 14.019 283.828 7.187v-3.251zm0 0c79.304 0 152.086-26.541 198.956-66.178 23.788 7.112 54.237 18.55 73.452 32.74 16.436 12.136 14.388 24.51 11.42 29.502-13.007 21.954-223.155 14.019-283.828 7.187v-3.251z"
+                              fill="#F6C556"
+                            ></path>
+                            <path
+                              d="M529.532 497.784c130.95-.886 235.898-26.237 271.46-35.954C809.47 459.508 814 455.35 814 455.35c.033-1.196.538-21.321.538-31.697 0-174.832-82.525-350.505-285.486-350.511-202.96.006-285.49 175.686-285.49 350.504 0 10.39.504 30.508.543 31.698 0 0 3.69 3.89 10.439 5.776 32.835 9.136 139.757 35.746 274.022 36.663h.967zm355.845 145.64c-8.117-26.123-19.195-56.584-30.419-85.839 0 0-6.452-.798-9.723.145-100.677 29.248-222.714 47.893-315.703 46.766h-.967c-92.471 1.108-213.677-17.316-314.02-46.28-3.833-1.106-11.4-.631-11.4-.631-11.224 29.255-22.302 59.723-30.419 85.839-38.713 124.574-26.167 176.124-16.62 177.275 20.492 2.48 79.755-93.768 79.755-93.768 0 97.803 88.301 247.973 290.509 249.354h5.364c202.2-1.38 290.502-151.55 290.502-249.354 0 0 59.27 96.247 79.761 93.774 9.542-1.157 22.087-52.713-16.62-177.281z"
+                              fill="#0E0E0D"
+                            ></path>
+                            <path
+                              d="M456.837 331.42c-27.534 1.247-51.058-30.114-52.538-69.992-1.491-39.889 19.6-73.237 47.134-74.483 27.503-1.234 51.018 30.115 52.512 70.005 1.506 39.895-19.594 73.244-47.108 74.47zm196.968-69.992c-1.474 39.871-24.996 71.239-52.53 69.993-27.522-1.234-48.614-34.576-47.107-74.464 1.49-39.891 25.002-71.24 52.51-70.012 27.533 1.246 48.627 34.594 47.127 74.483z"
+                              fill="#FFF"
+                            ></path>
+                            <path
+                              d="M702.727 387.739c-7.352-16.291-81.456-34.45-173.186-34.45h-.989c-91.737 0-165.834 18.159-173.193 34.456a5.479 5.479 0 0 0-.537 2.321 5.577 5.577 0 0 0 1.012 3.139c6.2 9.028 88.479 53.693 172.718 53.693h.989c84.232 0 166.51-44.652 172.711-53.693a5.547 5.547 0 0 0 1.013-3.152 5.421 5.421 0 0 0-.538-2.308"
+                              fill="#F6C556"
+                            ></path>
+                            <path
+                              d="M490.678 262.022c1.259 15.753-7.383 29.749-19.272 31.273-11.912 1.532-22.574-9.997-23.838-25.75-1.246-15.766 7.383-29.76 19.252-31.28 11.932-1.542 22.611 9.997 23.858 25.75v.007zm75.643 5.265c2.434-4.361 19.004-27.282 53.313-18.937 9.017 2.195 13.185 5.423 14.065 6.688 1.296 1.873 1.658 4.541.336 8.135-2.607 7.125-7.991 6.93-10.972 5.536-1.929-.898-25.825-16.829-47.843 6.94-1.517 1.628-4.224 2.19-6.788.254-2.575-1.949-3.63-5.883-2.111-8.616z"
+                              fill="#333"
+                            ></path>
+                            <path
+                              d="M529.517 598.765h-.97c-63.24.759-139.92-7.616-214.182-22.258-6.353 36.81-10.187 83.082-6.897 138.258 8.326 139.46 91.15 227.129 218.993 228.394h5.189c127.849-1.265 210.664-88.934 219.002-228.394 3.29-55.187-.55-101.447-6.907-138.264-74.27 14.648-150.968 23.03-214.222 22.258"
+                              fill="#FFF"
+                            ></path>
+                            <path
+                              d="M813.995 455.351l40.96 102.225c-102.462 30.887-229.42 50.791-325.427 49.634h-.97c-16.906.203-34.772-.246-53.296-1.293l-.002 122.316c-62.99 8.781-125.857-3.897-125.857-3.897v-132.97c-50.35-8.503-100.729-20.062-146.263-33.79l40.96-102.225c.416.126 122.554 38.612 284.459 39.7h.969c162.171-1.095 284.467-39.7 284.467-39.7z"
+                              fill="#E14847"
+                            ></path>
+                          </g></svg
+                      ></span>
+                    </a>
+
+                    <a class="github-login" href="#">
+                      <span
+                        tagname="span"
+                        class="ncicon ncicon-bleed"
+                        aria-label="GitHub"
+                        size="24"
+                        ><svg
+                          class="github-login-svg"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          width="1.8em"
+                          height="1.8em"
+                          aria-hidden="true"
+                          href="https://github.com/login"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M12.048 2a9.913 9.913 0 00-6.511 2.44 10.308 10.308 0 00-3.407 6.171 10.436 10.436 0 001.323 6.954 10.079 10.079 0 005.422 4.418c.505.095.684-.226.684-.497v-1.744c-2.804.624-3.396-1.378-3.396-1.378a2.738 2.738 0 00-1.115-1.504c-.906-.63.074-.63.074-.63.317.046.62.165.886.348.266.184.488.426.648.71.137.252.32.475.541.655a2.128 2.128 0 001.582.463c.28-.033.551-.122.798-.262a2.198 2.198 0 01.616-1.372c-2.23-.258-4.572-1.14-4.572-5.035a4.013 4.013 0 011.03-2.75 3.813 3.813 0 01.098-2.713s.844-.277 2.76 1.05a9.303 9.303 0 015.028 0c1.917-1.327 2.755-1.05 2.755-1.05.37.85.413 1.811.123 2.693a4.014 4.014 0 011.029 2.75c0 3.94-2.348 4.803-4.584 5.036.24.246.425.542.543.868.118.326.166.674.14 1.02v2.814c0 .333.18.591.69.49a10.085 10.085 0 005.346-4.434 10.437 10.437 0 001.29-6.91 10.31 10.31 0 00-3.373-6.132A9.916 9.916 0 0012.048 2z"
+                            clip-rule="evenodd"
+                          ></path></svg
+                      ></span>
+                    </a>
+                  </div>
+                  <el-form-item>
+                    <el-checkbox
+                      class-name="agreement"
+                      ref="buttonRef"
+                      v-model="loginForm.agreed"
+                    />
+                    同意<a href="#">《用户协议》</a>和<a href="#"
+                      >《隐私政策》</a
+                    >
+                    <!-- <el-popover class="agreement-tip" :virtual-ref="buttonRef" ref="popoverRef" v-model:show="showAgreementTip"
+                      placement="top-start" content="请阅读并勾选下方协议">
+                    </el-popover> -->
+                  </el-form-item>
                 </el-tabs>
               </el-form>
             </div>
@@ -278,12 +268,13 @@ import { ElForm, ElFormItem, ElInput, ElButton, ElMessage } from "element-plus";
 import Schema from "async-validator";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
-import UserAvatar from "@/components/GlobalModel/UserAvatar.vue"
+import UserAvatar from "@/components/GlobalModel/UserAvatar.vue";
 import router from "@/router";
 
 interface LoginForm {
   phone: string;
   email: string;
+  account: string;
   code: string;
   password: string;
   agreed: false;
@@ -314,7 +305,11 @@ const rules = reactive({
   ],
   code: [
     { required: false, message: "请输入验证码", trigger: "blur" },
-    { pattern: /^\d{6}$/, message: "验证码格式不正确", trigger: "blur" },
+    {
+      pattern: /^\d{6}|[a-zA-Z0-9]{4}$/,
+      message: "验证码格式不正确",
+      trigger: "blur",
+    },
   ],
   password: [{ required: false, message: "请输入密码", trigger: "blur" }],
   agreed: [
@@ -326,6 +321,7 @@ const loginForm = reactive<LoginForm>({
   phone: "",
   email: "",
   code: "",
+  account: "",
   password: "",
   agreed: false,
 });
@@ -335,45 +331,96 @@ function handleClose(done: () => void) {
   loginForm.phone = "";
   loginForm.email = "";
   loginForm.code = "";
+  loginForm.account = "";
   loginForm.password = "";
   // 调用 done 函数关闭对话框
   done();
 }
+// QQ 第三方登录
+function qqLoginClick() {
+  axios.get("/api/qqlogin").then((response: any) => {
+    // 设置CORS头
+    const url = response.data;
+    const width = 600;
+    const height = 380;
+    const left = window.screen.width / 2 - width / 2;
+    const top = window.screen.height / 2 - height / 2 - 50;
+    const redirectUrl = url.substring(9);
+    window.open(
+      redirectUrl,
+      "_blank",
+      `width=${width},height=${height},
+    left=${left},top=${top}`
+    );
+    console.log(redirectUrl);
+  });
+}
 
-function handleSendCode() {
-  // 处理表单提交逻辑
-  // 调用 /register 接口逻辑
-  // 发送验证码逻辑
+// //在回调页面要定时触发，检测用户是否登录，用户登录后传openId和accessToken到后端进行自己的业务编写
+// function qqLogin() {
+//   // eslint-disable-next-line @typescript-eslint/no-this-alias
+//   // var that = this; // 先将vue这个对象保存在_self对象中
+//   //检查是否登录
+//   if ((window as any).QC.Login.check()) {
+//     (window as any).QC.Login.getMe(function (openId, accessToken) {
+//       if (openId != undefined) {
+//         HttpManager.QqLoginUrl(accessToken, openId)
+//           .then((res: any) => {
+//             (proxy as any).$message({
+//               message: "登陆成功",
+//               type: "success",
+//             });
+//             if (res.code == 200) {
+//               console.log("登录成功请求用户数据成功！");
+//             } else {
+//               console.log("登录成功但请求用户数据失败！");
+//             }
+//           })
+//           .catch((err) => {
+//             console.error(err);
+//           });
+//       }
+//     });
+//   } else {
+//     console.log("未登录!");
+//   }
+// }
 
-  axios
-    .post("http://localhost:8080/user/sendCode", {
-      phone: loginForm.phone, // 替换成您的表单数据main
-    })
-    .then((response: any) => {
-      console.log(response.data.msg);
-      if (response.data.code == 0) {
-        ElMessage.error(response.data.msg);
-      }
-      if (response.data.code == 20000) {
-        disableSendCode.value = true;
-        let countdown = 60;
-        const timer = setInterval(() => {
-          countdown--;
-          sendCodeCountdown.value = countdown;
-          if (countdown <= 0) {
-            clearInterval(timer);
-            disableSendCode.value = false;
-            sendCodeCountdown.value = 60;
-          }
-        }, 1000);
-        ElMessage.success("短信发送成功！");
-      }
-      // 处理请求成功的逻辑
-    })
-    .catch((error: any) => {
-      // 处理请求失败的逻辑
-      ElMessage.error("出现错误，请联系管理员！");
-    });
+async function sendCode(type: any, account: any) {
+  try {
+    let response;
+    if (type === "email") {
+      response = await axios.post("/user/sendMsg", { email: account });
+    } else {
+      response = await axios.post("/api/user/sendCode", { phone: account });
+    }
+    if (response.data.code === 20000) {
+      disableSendCode.value = true;
+      let countdown = 60;
+      const timer = setInterval(() => {
+        countdown--;
+        sendCodeCountdown.value = countdown;
+        if (countdown <= 0) {
+          clearInterval(timer);
+          disableSendCode.value = false;
+          sendCodeCountdown.value = 60;
+        }
+      }, 1000);
+      ElMessage.success(`${type === "email" ? "邮件" : "短信"}发送成功！`);
+    } else {
+      ElMessage.error(response.data.msg);
+    }
+  } catch (error) {
+    ElMessage.error("出现错误，请联系管理员！");
+  }
+}
+
+async function handleSendCode() {
+  if (!/^1[3456789]\d{9}$/.test(loginForm.account)) {
+    await sendCode("email", loginForm.account);
+  } else {
+    await sendCode("phone", loginForm.account);
+  }
 }
 
 function handleSubmit() {
@@ -391,8 +438,8 @@ function handleSubmit() {
     return;
   }
   axios
-    .post("http://localhost:8080/user/login1", {
-      phone: loginForm.phone, // 替换成您的表单数据main
+    .post("/api/user/login1", {
+      account: loginForm.account, // 替换成您的表单数据main
       code: loginForm.code,
     })
     .then((response: any) => {
@@ -435,7 +482,7 @@ function handleSubmitLogin() {
     return;
   }
   axios
-    .post("http://localhost:8080/user/login1", {
+    .post("/api/user/login1", {
       username: "",
       phone: loginForm.phone, // 替换成您的表单数据main
       password: loginForm.password,
@@ -456,7 +503,6 @@ function handleSubmitLogin() {
       console.log(error);
     });
 }
-
 
 function sendCodeText() {
   return disableSendCode.value
@@ -497,6 +543,9 @@ function sendCodeText() {
   display: flex !important;
   overflow: hidden !important;
   border-radius: 80px !important;
+  margin-right: 0px;
+
+  margin-top: -40px;
   align-items: center;
 }
 .user-avatar {
@@ -632,7 +681,7 @@ function sendCodeText() {
   background-color: #ffffff;
   border-radius: 50%;
   padding: 5px;
-
+  cursor: pointer;
   box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -655,7 +704,18 @@ function sendCodeText() {
   color: #47e2b1 !important;
   margin-left: 10px;
 }
-
+:deep(.is-checked) {
+  .el-checkbox__inner {
+    background-color: #47e2b1 !important;
+    border-color: #47e2b1 !important;
+  }
+}
+:deep(.el-checkbox__inner) {
+  margin-right: 5px;
+}
+:deep(.el-checkbox__inner:hover) {
+  border-color: #47e2b1 !important;
+}
 .login-btn {
   background-color: #47e2b1 !important;
   border-radius: 10px !important;

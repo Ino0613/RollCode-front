@@ -24,11 +24,11 @@ const activeName = ref("first");
 
 <style lang="less" scoped>
 .home-title-tabs {
-  ::v-deep.el-tabs__item {
+  :deep(.el-tabs__item) {
     color: rgb(99, 99, 99);
     font-size: medium;
   }
-  ::v-deep.el-tabs__nav-scroll {
+  :deep(.el-tabs__nav-scroll) {
     background-color: #ffffff;
     height: 60px;
     border-radius: 10px;

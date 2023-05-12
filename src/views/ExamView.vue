@@ -17,10 +17,8 @@
             </el-main>
           </el-col>
           <el-col :span="11">
-            <IBacktop/>
-           
+            <IBacktop />
           </el-col>
-          
         </el-row>
       </div>
     </el-container>
@@ -32,7 +30,7 @@
   height: auto;
   background-color: #f7f8f8;
 }
-::v-deep.el-header {
+:deep(.el-header) {
   .navbar {
     position: absolute;
     top: 0;

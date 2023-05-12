@@ -40,7 +40,7 @@ export default {
         {
           label: "JAVA",
           icon: "https://static.nowcoder.com/fe/file/oss/1670224506225AUBYN.png",
-          href: "https://www.nowcoder.com/interview/center?anchor=companyExp&jumpFrom=%E6%9C%AA%E7%99%BB%E5%BD%95%E9%A6%96%E9%A1%B5",
+          href: "https://rc.iyunmc.com/interview/center?anchor=companyExp&jumpFrom=%E6%9C%AA%E7%99%BB%E5%BD%95%E9%A6%96%E9%A1%B5",
           target: "_blank",
         },
       ],

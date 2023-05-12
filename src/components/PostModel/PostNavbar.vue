@@ -86,7 +86,7 @@
     text-align: right;
   
   }
-  ::v-deep.el-dialog{
+  :deep(.el-dialog){
     width: 500px!important;
     border-radius: 10px;
     align-items: center;
@@ -119,7 +119,7 @@
     margin-top: 8px;
     margin-left: 20px;
   }
-  ::v-deep.el-statistic__content{
+  :deep(.el-statistic__content){
     display: flex;
     align-items: center;
     margin-top: 4px;
@@ -143,12 +143,12 @@
     padding-top: 3px;
   
   }
-  ::v-deep.el-page-header__title{
+  :deep(.el-page-header__title){
     font-size: 16px;
     font-weight: bold;
   }
   
-  ::v-deep.el-page-header:hover{
+  :deep(.el-page-header:hover){
     color: #32ca99;
   }
   </style> 

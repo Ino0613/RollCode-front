@@ -51,7 +51,7 @@
             </div>
             <el-divider />
           </li>
-          <li v-if="!links.length">暂无数据</li>
+          <li v-if="links.length===0">暂无数据</li>
         </ul>
       </div>
     </div>
@@ -74,8 +74,8 @@ const title = ref("");
 const links = ref([
   {
     id: 1,
-    nickname: "user-1",
-    user_icon: "https://tc.iyunmc.cn/LightPicture/2023/05/c8e42232a80aa005.png",
+    nickname: "泰裤辣",
+    user_icon: "https://q2.qlogo.cn/headimg_dl?dst_uin=1252343981&spec=140",
     title: "如何在「求职面试」中发布一篇帖子？",
     url: "http://example.com/1",
     create_time: "2023-05-08 11:18:07",
@@ -88,6 +88,7 @@ const links = ref([
   },
   {
     id: 2,
+    nickname: "user_b6wv7h75xi",
     user_icon: "https://tc.iyunmc.cn/LightPicture/2023/05/c8e42232a80aa005.png",
     title: "请问除了大厂外企还有哪些厂考算法？",
     url: "http://example.com/2",
@@ -258,13 +259,13 @@ const links = ref([
 ]);
 
 const fetchinterviewforum = async () => {
-  // try {
-  //   const response = await axios.get("/api/interviewforum");
-  //   title.value = response.data.title;
-  //   links.value = response.data.links;
-  // } catch (error) {
-  //   console.error(error);
-  // }
+  try {
+    const response = await axios.get("api/post");
+    title.value = response.data.title;
+    links.value = response.data.links;
+  } catch (error) {
+    // console.error(error);
+  }
 };
 
 const refreshData = () => {
@@ -357,11 +358,12 @@ function formatTime(time: any) {
       
 
       img {
-        width: 20px;
-        height: 20px;
-        border-radius: 10px;
+        width: 30px;
+        height: 30px;
+        border-radius: 20px;
         margin-top: 18px;
         margin-left: 18px;
+
       }
 
       span {
