@@ -238,15 +238,25 @@
                     </a>
                   </div>
                   <el-form-item>
-                    <el-checkbox
-                      class-name="agreement"
-                      ref="buttonRef"
-                      v-model="loginForm.agreed"
-                    />
+                    <el-tooltip
+                      content="请阅读并勾选下方协议"
+                      placement="top-start"
+                      :auto-close="1000"
+                      :offset="10"
+                      :visible="tooltipvisible"
+                    >
+                      <el-checkbox
+                        class-name="agreement"
+                        v-model="loginForm.agreed"
+                      />
+                    </el-tooltip>
+
                     同意<a href="#">《用户协议》</a>和<a href="#"
                       >《隐私政策》</a
                     >
-                    <!-- <el-popover class="agreement-tip" :virtual-ref="buttonRef" ref="popoverRef" v-model:show="showAgreementTip"
+                    <!-- <el-popover 
+                    :virtual-ref="buttonRef" 
+                    ref="popoverRef" 
                       placement="top-start" content="请阅读并勾选下方协议">
                     </el-popover> -->
                   </el-form-item>
@@ -286,6 +296,8 @@ const store = useStore();
 const sendCodeCountdown = ref(60);
 const disableSendCode = ref(false);
 const dialogLoginRegisterVisible = ref(false);
+const tooltipvisible = ref(false);
+const tooltipshowtime = ref(2);
 const activeTab = ref("register");
 const currentRoute = route.path;
 const buttonRef = ref();
@@ -325,6 +337,21 @@ const loginForm = reactive<LoginForm>({
   password: "",
   agreed: false,
 });
+const popoverRef = ref();
+const onClickOutside = () => {
+  unref(popoverRef).popperRef?.delayHide?.();
+};
+
+const urlParams = new URLSearchParams(window.location.search);
+const token = urlParams.get("token");
+if (token) {
+  console.log(token);
+  store.commit("token", token);
+  localStorage.setItem("token", token);
+  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  console.log(localStorage.getItem("token"));
+  window.location.href = "/";
+}
 
 function handleClose(done: () => void) {
   // 执行一些逻辑，比如清除表单数据
@@ -338,6 +365,17 @@ function handleClose(done: () => void) {
 }
 // QQ 第三方登录
 function qqLoginClick() {
+  if (!loginForm.agreed) {
+    tooltipvisible.value = true;
+
+    // 用户未勾选同意注册协议和隐私政策
+    // 设置定时器，一定时间后关闭提示框
+    setTimeout(() => {
+      tooltipvisible.value = false;
+    }, 1000);
+
+    return;
+  }
   axios.get("/api/qqlogin").then((response: any) => {
     // 设置CORS头
     const url = response.data;
@@ -346,14 +384,49 @@ function qqLoginClick() {
     const left = window.screen.width / 2 - width / 2;
     const top = window.screen.height / 2 - height / 2 - 50;
     const redirectUrl = url.substring(9);
-    window.open(
+    // 在新窗口中打开QQ登录页面
+    const popupWindow = window.open(
       redirectUrl,
       "_blank",
       `width=${width},height=${height},
-    left=${left},top=${top}`
+      left=${left},top=${top}`
     );
-    console.log(redirectUrl);
+    // 如果变量不为null，注册unload事件，在新窗口关闭时触发该事件
   });
+}
+
+function loginWithQQ() {
+  // 发起登录请求
+  fetch("/qqcallback?code=yourCode&state=yourState")
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.code === 200 && data.data) {
+        // 登录成功
+        const token = data.data.token;
+        const openid = data.data.openid;
+        // 存储 token 和 openid，可以使用 localStorage 或 sessionStorage
+        localStorage.setItem("token", token);
+        localStorage.setItem("openid", openid);
+        // 关闭当前页面
+        window.close();
+        // 跳转到 home 页面
+        window.location.href = "/home";
+      } else {
+        // 处理登录失败情况
+        console.error("登录失败：", data.message);
+      }
+    })
+    .catch((error) => {
+      console.error("请求失败：", error);
+    });
+}
+// 成功登录后的处理函数
+function qqLoginSuccess(token: any) {
+  // 将 token 存入 localStorage 或 cookie，方便后续请求携带 token
+  localStorage.setItem("token", token);
+
+  // 重定向到首页
+  window.location.href = "/home";
 }
 
 // //在回调页面要定时触发，检测用户是否登录，用户登录后传openId和accessToken到后端进行自己的业务编写
@@ -387,6 +460,17 @@ function qqLoginClick() {
 // }
 
 async function sendCode(type: any, account: any) {
+  if (!loginForm.agreed) {
+    tooltipvisible.value = true;
+
+    // 用户未勾选同意注册协议和隐私政策
+    // 设置定时器，一定时间后关闭提示框
+    setTimeout(() => {
+      tooltipvisible.value = false;
+    }, 1000);
+
+    return;
+  }
   try {
     let response;
     if (type === "email") {
@@ -416,6 +500,17 @@ async function sendCode(type: any, account: any) {
 }
 
 async function handleSendCode() {
+  if (!loginForm.agreed) {
+    tooltipvisible.value = true;
+
+    // 用户未勾选同意注册协议和隐私政策
+    // 设置定时器，一定时间后关闭提示框
+    setTimeout(() => {
+      tooltipvisible.value = false;
+    }, 1000);
+
+    return;
+  }
   if (!/^1[3456789]\d{9}$/.test(loginForm.account)) {
     await sendCode("email", loginForm.account);
   } else {
@@ -427,14 +522,14 @@ function handleSubmit() {
   // 处理表单提交逻辑
   // 调用 /register 接口逻辑
   if (!loginForm.agreed) {
+    tooltipvisible.value = true;
+
     // 用户未勾选同意注册协议和隐私政策
-    const checkboxEl = document.querySelector(
-      ".el-checkbox__inner"
-    ) as HTMLElement;
-    checkboxEl.classList.add("shake");
+    // 设置定时器，一定时间后关闭提示框
     setTimeout(() => {
-      checkboxEl.classList.remove("shake");
-    }, 500);
+      tooltipvisible.value = false;
+    }, 1000);
+
     return;
   }
   axios
@@ -481,6 +576,7 @@ function handleSubmitLogin() {
     }, 500);
     return;
   }
+
   axios
     .post("/api/user/login1", {
       username: "",
@@ -712,7 +808,34 @@ function sendCodeText() {
 }
 :deep(.el-checkbox__inner) {
   margin-right: 5px;
+  .shake {
+    animation: shake 0.3s;
+  }
+
+  @keyframes shake {
+    10%,
+    90% {
+      transform: translateX(-1px);
+    }
+
+    20%,
+    80% {
+      transform: translateX(2px);
+    }
+
+    30%,
+    50%,
+    70% {
+      transform: translateX(-4px);
+    }
+
+    40%,
+    60% {
+      transform: translateX(4px);
+    }
+  }
 }
+
 :deep(.el-checkbox__inner:hover) {
   border-color: #47e2b1 !important;
 }

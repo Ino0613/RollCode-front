@@ -14,7 +14,10 @@ import GetExamInfo from '@/components/ExamModel/GetExamInfo.vue';
 
 import LoginorRegister from "@/components/LoginorRegister.vue";
 import ElementPlus from "element-plus"
+
 import 'element-plus/dist/index.css'
+import './assets/styles/global.less';
+
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 const app = createApp(App);
 

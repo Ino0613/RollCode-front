@@ -34,17 +34,23 @@
 </template>
 <script lang="ts">
 import PostNavbar from "./PostNavbar.vue";
+import { PostAdd } from "@/types";
+import { createPost } from "@/utils/utils";
+
 import PostFooter from "./PostFooter.vue";
 import { ref } from "vue";
-const text = ref("");
-const textarea = ref("");
+// const text = ref("");
+// const textarea = ref("");
+const title = ref("");
+const content = ref("");
+
 export default {
   data() {
     return {
-      title: "",
-      content: "",
       image: null,
       emoji: "",
+      title,
+      content,
       theme: "",
     };
   },
@@ -53,14 +59,19 @@ export default {
       // this.image = event.target.files[0];
     },
     submitPost() {
-      // 在这里编写提交动态的代码，可以使用axios等库将数据发送到后端进行处理
-      // console.log({
-      //   title: this.title,
-      //   content: this.content,
-      //   image: this.image,
-      //   emoji: this.emoji,
-      //   theme: this.theme,
-      // });
+      const post: PostAdd = {
+        title: title.value,
+        content: content.value,
+      };
+      createPost(post)
+        .then((res) => {
+          console.log(res.data);
+          // 处理成功响应
+        })
+        .catch((err) => {
+          console.error(err);
+          // 处理失败响应
+        });
     },
   },
   components: { PostNavbar, PostFooter },

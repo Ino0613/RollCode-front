@@ -1,28 +1,30 @@
 <template>
   <div class="exam-info">
     <div class="paper">
-      <div
-        class="question"
-        v-for="(question, index) in questions"
-        :key="question.id"
-      >
-        <div>
-          <div class="title">{{ index + 1 }}. {{ question.question }}</div>
-          <el-radio-group v-model="question.selectedAnswer" class="options">
-            <div
-              class="option"
-              v-for="(option, optionIndex) in question.options"
-              :key="optionIndex"
-            >
-              <el-radio :label="option">{{ option }}</el-radio>
-            </div>
-          </el-radio-group>
+      <el-skeleton :rows="5" animated :loading="loading">
+        <div
+          class="question"
+          v-for="(question, index) in questions"
+          :key="question.id"
+        >
+          <div>
+            <div class="title">{{ index + 1 }}. {{ question.question }}</div>
+            <el-radio-group v-model="question.selectedAnswer" class="options">
+              <div
+                class="option"
+                v-for="(option, optionIndex) in question.options"
+                :key="optionIndex"
+              >
+                <el-radio :label="option">{{ option }}</el-radio>
+              </div>
+            </el-radio-group>
+          </div>
         </div>
-      </div>
-      <div class="submit">
-        <el-button type="primary" @click="">提交</el-button>
-        <!-- <div v-if="showScore" class="score">得分：{{ score }}</div> -->
-      </div>
+        <div class="submit">
+          <el-button type="primary" @click="">提交</el-button>
+          <!-- <div v-if="showScore" class="score">得分：{{ score }}</div> -->
+        </div>
+      </el-skeleton>
     </div>
   </div>
 </template>
@@ -42,65 +44,48 @@ interface Question {
   difficulty: number;
 }
 
-const activeName = ref("first");
-const title = ref("");
-export default {
-  data() {
+export default defineComponent({
+  setup() {
+    const questions = ref<Question[]>([]);
+    const loading = ref(true);
+    const activeName = ref("first");
+    const title = ref("");
+
+    onMounted(() => {
+      window.scrollTo(0, 0);
+      setTimeout(() => {
+        loading.value = false;
+      }, 500);
+
+      axios
+        .get("/api/question/exam/1")
+        .then((response) => {
+          questions.value = response.data.data.map((record: any) => {
+            return {
+              id: record.id,
+              type: record.type,
+              question: record.content,
+              options: JSON.parse(record.options),
+              answer: JSON.parse(record.answer),
+              selectedAnswer: null,
+              score: record.score,
+              difficulty: record.difficulty,
+            };
+          });
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    });
+
     return {
-      questions: [
-        {
-          id: "1",
-          type: 1,
-          question:
-            "以下哪个 Java 关键字用于声明可以在程序中的任何地方访问的类？",
-          options: ["A. this", "B. super", "C. private", "D. public"],
-          answer: ["D"],
-          selectedAnswer: null,
-          score: 1,
-          difficulty: 1,
-        },
-        {
-          id: "2",
-          type: 2,
-          question: "以下哪些选项是正确的？",
-          options: [
-            "A. Vue.js 是一个前端框架",
-            "B. React 是一个后端框架",
-            "C. Angular 是一个前端框架",
-            "D. Express 是一个前端框架",
-          ],
-          answer: ["A", "C"],
-          selectedAnswer: null,
-          score: 1,
-          difficulty: 2,
-        },
-      ],
+      questions,
+      loading,
+      activeName,
+      title,
     };
   },
-  questions: [] as Question[],
-  mounted() {
-    window.scrollTo(0, 0);
-    axios
-      .get("api/question/exam/1")
-      .then((response) => {
-        this.questions = response.data.data.map((record: any) => {
-          return {
-            id: record.id,
-            type: record.type,
-            question: record.content,
-            options: JSON.parse(record.options),
-            answer: JSON.parse(record.answer),
-            selectedAnswer: null,
-            score: record.score,
-            difficulty: record.difficulty,
-          };
-        });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  },
-};
+});
 </script>
 
 <style lang="less" scoped>

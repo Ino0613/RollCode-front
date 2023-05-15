@@ -214,3 +214,9 @@ export interface Meta {
     count: number;
     list: TagList | any;
   }
+
+  export interface PostAdd {
+    title: string;
+    content: string;
+    // labels: string[];
+  }

@@ -20,7 +20,11 @@
                 <div class="link-body-box">
                   <div>
                     <!-- 论坛标签 -->
-                    <div class="link-box-label">{{ link.labels }}</div>
+                    <div class="link-box-label">
+                      <span v-for="(label, index) in link.labels" :key="index"
+                        >{{ label }}
+                      </span>
+                    </div>
                     <!-- 论坛内容 -->
                     <div class="link-box-content">{{ link.content }}</div>
                   </div>
@@ -50,7 +54,7 @@
               </div>
             </div>
           </li>
-          <li v-if="links.length===0">暂无数据</li>
+          <li v-if="links.length === 0">暂无数据</li>
         </ul>
       </div>
       <el-dialog
@@ -58,91 +62,72 @@
         :title="selectedLink.user_nickname"
         :width="dialogWidth"
         :before-close="handleDialogClose"
+        :lock-scroll="false"
       >
-        <div class="dialog-header">
-          <div class="avatar">
-            <img :src="selectedLink.user_avatar" />
-          </div>
-          <div class="info">
-            <div class="nickname">{{ selectedLink.user_nickname }}</div>
-            <div class="time">{{ selectedLink.time }}</div>
-          </div>
-          <div class="follow">
-            <el-button
-              type="primary"
-              icon="el-icon-star-off"
-              @click="handleFollow"
-            >
-              关注
-            </el-button>
-          </div>
-        </div>
-        <div class="dialog-content">
-          <div class="title">{{ selectedLink.title }}</div>
-          <div class="content">{{ selectedLink.content }}</div>
-        </div>
-        <div class="dialog-footer">
-          <div class="actions">
-            <div class="action">
-              <el-button type="text" icon="el-icon-star-off">
-                {{ selectedLink.likes }} 点赞
-              </el-button>
-            </div>
-            <div class="action">
-              <el-button type="text" icon="el-icon-star-on">
-                {{ selectedLink.favorites }} 收藏
-              </el-button>
-            </div>
-            <div class="action">
-              <el-button type="text" icon="el-icon-chat-dot-round">
-                {{ selectedLink.comments }} 评论
-              </el-button>
-            </div>
-          </div>
-          <div class="reply">
-            <el-input v-model="replyText" placeholder="回复帖子"></el-input>
-            <el-button type="primary" @click="handleReply">回复</el-button>
-          </div>
-        </div>
+        <el-skeleton :rows="5" animated :loading="loading">
+          <el-container>
+            <el-header class="dialog-header">
+              <div class="avatar">
+                <img :src="selectedLink.user_avatar" />
+              </div>
+              <div class="info">
+                <div class="nickname">{{ selectedLink.user_nickname }}</div>
+                <div class="time">{{ selectedLink.time }}</div>
+              </div>
+              <div class="follow">
+                <el-button
+                  type="primary"
+                  icon="el-icon-star-off"
+                  @click="handleFollow"
+                >
+                  关注
+                </el-button>
+              </div>
+            </el-header>
+            <el-main class="dialog-content">
+              <div class="title">{{ selectedLink.title }}</div>
+              <div class="content">{{ selectedLink.content }}</div>
+            </el-main>
+            <el-footer class="dialog-footer">
+              <div class="actions">
+                <div class="action">
+                  <el-button type="primary" icon="el-icon-star-off">
+                    {{ selectedLink.likes }} 点赞
+                  </el-button>
+                </div>
+                <div class="action">
+                  <el-button type="primary" icon="el-icon-star-on">
+                    {{ selectedLink.favorites }} 收藏
+                  </el-button>
+                </div>
+                <div class="action">
+                  <el-button type="primary" icon="el-icon-chat-dot-round">
+                    {{ selectedLink.comments }} 评论
+                  </el-button>
+                </div>
+              </div>
+              <div class="reply">
+                <el-input v-model="replyText" placeholder="回复帖子"></el-input>
+                <el-button type="primary" @click="handleReply">回复</el-button>
+              </div>
+            </el-footer>
+          </el-container>
+        </el-skeleton>
       </el-dialog>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { defineComponent, ref, onMounted } from "vue";
+import { defineComponent, ref, reactive, onMounted } from "vue";
 import axios from "axios";
 
 const activeName = ref("first");
 const title = ref("");
 const replyText = ref("");
-const dialogVisible = ref(false);
+const loading = ref(true);
 const dialogVisibleInfo = ref(false);
 const dialogWidth = "50%";
-
-
-const handleFollow = () => {
-  // Handle follow
-};
-
-const handleReply = () => {
-  // Handle reply
-};
-
-const showLinkDialog = (id: any) => {
-
-  dialogVisibleInfo.value = true;
-}
-const selectedLink = ref({
-  user_nickname: "John",
-  user_avatar: "https://q2.qlogo.cn/headimg_dl?dst_uin=1252343981&spec=140",
-  time: "2023-05-11",
-  title: "My Link",
-  content: "This is my link content",
-  likes: 10,
-  favorites: 5,
-  comments: 3,
-});
 interface Links {
   id: string;
   userId: string;
@@ -157,21 +142,55 @@ interface Links {
   createTime: string;
   updateTime: string;
 }
-let links= [] as Links[]
+const links = reactive([] as Links[]);
 
-// const fetchRecommendations = async () => {
-//   try {
-//     const response = await axios.get("/api/post");
-//     // title.value = response.data.title;
-//     // links.value = response.data.links;
-//     links = response.data
-//   } catch (error) {
-//     // console.error(error);
-//   }
-// };
+const handleFollow = () => {
+  // Handle follow
+};
 
-function getAllPost() {
-  axios
+const handleReply = () => {
+  // Handle reply
+};
+
+const selectedLink = ref({
+  user_nickname: "John",
+  user_avatar: "https://q2.qlogo.cn/headimg_dl?dst_uin=1252343981&spec=140",
+  time: "2023-05-11",
+  title: "My Link",
+  content: "This is my link content",
+  likes: 10,
+  favorites: 5,
+  comments: 3,
+});
+
+const showLinkDialog = async (id: any) => {
+  setTimeout(() => {
+    loading.value = false
+  }, 400);
+
+  dialogVisibleInfo.value = true;
+  await axios
+    .get("api/post/" + id)
+    .then((response) => {
+      const data = response.data.data;
+      selectedLink.value = {
+        user_nickname: data.user_nickname,
+        user_avatar: data.userIcon,
+        time: data.time,
+        title: data.title,
+        content: data.content,
+        likes: data.likes,
+        favorites: data.favorites,
+        comments: data.comments,
+      };
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+async function getAllPost() {
+  await axios
     .get("api/post")
     .then((response) => {
       const data = response.data.data;
@@ -190,19 +209,26 @@ function getAllPost() {
           updateTime: post.updateTime,
           views: post.views,
         });
-
       });
-      console.log(links);
-      console.log(links.length);
-      
-        
     })
     .catch((error) => {
       console.error(error);
     });
 }
 const handleDialogClose = () => {
+  loading.value = true;
   dialogVisibleInfo.value = false;
+  selectedLink.value = {
+    user_nickname: "",
+    user_avatar: "",
+    time: "",
+    title: "",
+    content: "",
+    likes: 0,
+    favorites: 0,
+    comments: 0,
+  };
+  replyText.value = "";
 };
 // const refreshData = () => {
 //   fetchRecommendations();
@@ -214,6 +240,7 @@ onMounted(() => {
 </script>
 
 <style lang="less" scoped>
+
 /* Recommendations 样式 */
 .recommendations {
   border-radius: 25px;
@@ -291,8 +318,16 @@ onMounted(() => {
   }
 }
 
+:deep(.el-dialog) {
+
+
+  border-radius: 15px;
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
 .link-items {
-  display: flex;
   flex-wrap: wrap;
   align-items: center;
   overflow: hidden;
@@ -343,17 +378,20 @@ onMounted(() => {
     flex-direction: column;
 
     .link-box-label {
-      display: inline-flex !important;
-      justify-content: flex-start !important;
-      align-items: center !important;
-      border-radius: 13px;
-      font-weight: 400;
-      font-size: 13px;
-      line-height: 20px;
-      background-color: rgba(0, 10, 32, 0.05);
-      color: #8e8e8e;
-      padding: 3px 10px;
-      margin-bottom: 10px;
+      span {
+        display: inline-flex !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+        border-radius: 13px;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 20px;
+        background-color: rgba(0, 10, 32, 0.05);
+        color: #8e8e8e;
+        padding: 3px 10px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+      }
     }
 
     .link-box-content {

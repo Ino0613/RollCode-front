@@ -34,6 +34,7 @@ export default {
   
   margin-bottom: 10px;
   .image {
+    cursor: pointer;
     width: 280px;
     height: 140px;
     border-radius: 20px;

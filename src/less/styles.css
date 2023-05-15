@@ -1,4 +1,4 @@
-// styles.less
+/* // styles.less */
 
 .el-link {
     color: black; /* 设置默认文本颜色 */
@@ -7,5 +7,17 @@
     &:hover {
       color: red; /* 设置悬停文本颜色为红色 */
       text-decoration: none; /* 设置悬停下划线为 none */
+    }
+  }
+
+  .el-button {
+    background: #32ca99;
+    border-color: #32ca99;
+    padding: 20px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    &:hover {
+      background-color: #2db78b;
+      border-color: #2db78b;
     }
   }

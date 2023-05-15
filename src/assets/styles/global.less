@@ -1,0 +1,39 @@
+.el-button--primary {
+  background: #32ca99;
+  border-color: #32ca99;
+  padding: 20px;
+  &:hover {
+    background-color: #2db78b;
+    border-color: #2db78b;
+  }
+}
+
+.el-checkbox__inner:hover {
+  border-color: #47e2b1 !important;
+}
+
+ .el-checkbox__inner.is-checked {
+  background-color: #47e2b1 !important;
+  border-color: #47e2b1 !important;
+  .shake {
+    animation: shake 0.3s;
+  }
+  
+  @keyframes shake {
+    10%, 90% {
+      transform: translateX(-1px);
+    }
+    
+    20%, 80% {
+      transform: translateX(2px);
+    }
+  
+    30%, 50%, 70% {
+      transform: translateX(-4px);
+    }
+  
+    40%, 60% {
+      transform: translateX(4px);
+    }
+  }
+}

@@ -43,7 +43,6 @@
 <style scoped>
 .rc-footer {
   background-color: #312e2e;
-  margin-top: 20px;
   padding: 0 0;
   font-size: 14px;
   line-height: 1.5;

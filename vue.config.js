@@ -7,7 +7,6 @@ module.exports = defineConfig({
     proxy: {
       '/sendMsg': {
         target: 'http://localhost:8080',
-        ws: true,
         changeOrigin: true,
         // pathRewrite: {
         //   '^/sendMsg': ''
@@ -27,5 +26,13 @@ module.exports = defineConfig({
       '.iyunmc.cn'   // .是二级域名的通配符   
     ],
   },
-  transpileDependencies: true
+  transpileDependencies: true,
+  css: {
+    loaderOptions: {
+      less: {
+        //全局less样式
+        additionalData: `@import "@/assets/styles/global.less";`,
+      }
+    }
+  }
 })

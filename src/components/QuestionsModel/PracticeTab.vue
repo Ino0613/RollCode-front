@@ -212,6 +212,7 @@ li:first-child{
 
             .sub-item {
                 display: flex;
+                cursor: pointer;
                 width: 150px;
                 background-color: #f7f8f8;
                 flex-direction: column;

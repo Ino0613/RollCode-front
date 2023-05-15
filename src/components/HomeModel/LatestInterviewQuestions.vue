@@ -125,6 +125,7 @@ export default {
 .latest-interview-questions {
     border: 1px solid #fcfcfc;
     margin-top: 16px;
+    margin-bottom: 16px;
     border-radius: 20px;
     background-color: rgb(255, 255, 255);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
