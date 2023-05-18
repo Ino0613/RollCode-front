@@ -20,6 +20,7 @@ module.exports = defineConfig({
         }
       },
 
+
     },
     allowedHosts: [
       'iyunmc.cn', // 允许访问的域名地址，即花生壳内网穿透的地址

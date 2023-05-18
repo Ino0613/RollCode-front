@@ -6,7 +6,7 @@
             <h2 class="title">最新面试题目</h2>
         </div>
 
-        <div>
+        <div class="interview-questions-content">
             <el-card shadow="never" class="card-wrapper">
                 <!-- 展示最近添加的面试题目 -->
                 <div class="questions-body">
@@ -131,6 +131,7 @@ export default {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     padding: 16px;
     padding-top: 1px;
+    padding-bottom: 0px;
     width: 78%;
 
 }
@@ -198,5 +199,6 @@ export default {
     display: flex;
     text-align: left;
 }
+
 
 </style>

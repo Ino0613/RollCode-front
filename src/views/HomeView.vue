@@ -74,7 +74,9 @@ export default {
 }
 
 .my-container {
-  background-color: #f7f8f8;
   height: auto;
+  background-color: #f7f8f8;
+  margin-bottom: 40px;
 }
+
 </style>

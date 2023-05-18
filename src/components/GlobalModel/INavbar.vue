@@ -266,6 +266,7 @@
           </div>
         </div>
       </el-dialog>
+
     </div>
   </el-container>
 </template>
@@ -280,6 +281,7 @@ import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import UserAvatar from "@/components/GlobalModel/UserAvatar.vue";
 import router from "@/router";
+import { Vue } from "vue-class-component";
 
 interface LoginForm {
   phone: string;
@@ -295,7 +297,9 @@ const route = useRoute();
 const store = useStore();
 const sendCodeCountdown = ref(60);
 const disableSendCode = ref(false);
+const CaptchaSussess = ref(false);
 const dialogLoginRegisterVisible = ref(false);
+const dialogCaptchaVisible = ref(false);
 const tooltipvisible = ref(false);
 const tooltipshowtime = ref(2);
 const activeTab = ref("register");
@@ -337,10 +341,7 @@ const loginForm = reactive<LoginForm>({
   password: "",
   agreed: false,
 });
-const popoverRef = ref();
-const onClickOutside = () => {
-  unref(popoverRef).popperRef?.delayHide?.();
-};
+const popoverRef = ref()
 
 const urlParams = new URLSearchParams(window.location.search);
 const token = urlParams.get("token");
@@ -352,6 +353,8 @@ if (token) {
   console.log(localStorage.getItem("token"));
   window.location.href = "/";
 }
+
+
 
 function handleClose(done: () => void) {
   // 执行一些逻辑，比如清除表单数据
@@ -459,6 +462,7 @@ function qqLoginSuccess(token: any) {
 //   }
 // }
 
+
 async function sendCode(type: any, account: any) {
   if (!loginForm.agreed) {
     tooltipvisible.value = true;
@@ -469,6 +473,15 @@ async function sendCode(type: any, account: any) {
       tooltipvisible.value = false;
     }, 1000);
 
+    return;
+  }
+  // if (CaptchaSussess) {
+  //   dialogCaptchaVisible.value = true;
+
+  //   return;
+  // }
+  if(account==null){
+    ElMessage.error("账户不能为空！");
     return;
   }
   try {
@@ -511,6 +524,7 @@ async function handleSendCode() {
 
     return;
   }
+
   if (!/^1[3456789]\d{9}$/.test(loginForm.account)) {
     await sendCode("email", loginForm.account);
   } else {
@@ -616,7 +630,6 @@ function sendCodeText() {
 
   background-color: #fff;
 }
-
 .el-menu-item:hover {
   color: #32ca99 !important;
   //background-color: rgba(40, 156, 118,0.3)!important;
